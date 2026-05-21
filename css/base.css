@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Share+Tech+Mono&family=IM+Fell+English:ital@0;1&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Palette */
+  --ember:          #ff8c00;
+  --ember-dim:      #cc6a00;
+  --ember-glow:     rgba(255, 140, 0, 0.30);
+  --ember-deep:     rgba(255, 80, 0, 0.15);
+
+  --arcane:         #00e5ff;
+  --arcane-dim:     #00b8cc;
+  --arcane-glow:    rgba(0, 229, 255, 0.25);
+
+  --stone:          #0d0a06;
+  --stone-mid:      #1a1410;
+  --stone-light:    #2a2018;
+
+  --parchment:      #c9a96e;
+  --parchment-dim:  #8a6e3e;
+  --parchment-faint:#4a3a20;
+
+  --gold:           #d4af37;
+  --gold-dim:       #a07c10;
+  --gold-glow:      rgba(212, 175, 55, 0.30);
+
+  --iron:           #1c1c1c;
+  --bg:             #080603;
+
+  /* Typography */
+  --font-display:   'Cinzel', serif;
+  --font-mono:      'Share Tech Mono', monospace;
+  --font-lore:      'IM Fell English', serif;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-med:  0.35s ease;
+  --transition-slow: 0.8s ease;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--parchment);
+  font-family: var(--font-mono);
+  cursor: none;
+}
+
+/* Vignette */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center,
+    transparent 48%,
+    rgba(4, 2, 1, 0.80) 100%
+  );
+}
+
+/* Fog lift at bottom */
+.fog-lift {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 200px;
+  pointer-events: none;
+  z-index: 98;
+  background: linear-gradient(0deg, rgba(10, 6, 2, 0.85) 0%, transparent 100%);
+}
+
+/* Ember particle canvas */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom cursor host */
+#cursor {
+  position: fixed;
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-fast), height var(--transition-fast);
+}
+#cursor.hover {
+  width: 36px;
+  height: 36px;
+}
+#cursor svg {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,204 @@
+/* ═══════════════════════════════
+   HUD OVERLAY
+   ═══════════════════════════════ */
+
+#hud {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease 0.6s;
+}
+#hud.visible { opacity: 1; }
+
+/* ── Top bar ── */
+#hud-top {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 44px 14px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+  border-left: 1px solid rgba(212, 175, 55, 0.10);
+  border-right: 1px solid rgba(212, 175, 55, 0.10);
+  background: linear-gradient(180deg, rgba(8, 6, 3, 0.92) 0%, transparent 100%);
+  text-align: center;
+  min-width: 340px;
+  pointer-events: auto;
+}
+.hud-realm {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+#hud-sector {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--parchment-dim);
+  letter-spacing: 0.22em;
+  transition: color 0.4s ease;
+}
+#hud-sector.danger { color: var(--ember); }
+
+/* ── Side vertical lines ── */
+.hud-vline {
+  position: absolute;
+  top: 70px; bottom: 80px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.14), transparent);
+}
+.hud-vline.left  { left: 22px; }
+.hud-vline.right { right: 22px; }
+
+/* ── Bottom bar ── */
+#hud-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 18px 28px;
+  background: linear-gradient(0deg, rgba(8, 6, 3, 0.95) 0%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  pointer-events: auto;
+}
+
+/* Panel card */
+.hud-card {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  background: rgba(8, 6, 3, 0.72);
+  padding: 10px 16px;
+  backdrop-filter: blur(2px);
+}
+.hud-card-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--parchment-faint);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+  padding-bottom: 5px;
+}
+
+/* Speed */
+#speed-val {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--ember);
+  text-shadow: 0 0 14px var(--ember-glow);
+  line-height: 1;
+}
+.speed-unit {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--ember-dim);
+  letter-spacing: 0.3em;
+  margin-top: 3px;
+}
+
+/* Arcane bar */
+.arcane-bar {
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 229, 255, 0.08);
+  margin-top: 8px;
+  overflow: hidden;
+}
+#arcane-fill {
+  height: 100%;
+  background: var(--arcane);
+  box-shadow: 0 0 6px var(--arcane);
+  width: 20%;
+  transition: width 0.2s ease;
+}
+
+/* Controls */
+.controls-hint {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--parchment-dim);
+  letter-spacing: 0.08em;
+  line-height: 2.1;
+  min-width: 220px;
+}
+.key {
+  display: inline-block;
+  border: 1px solid rgba(201, 169, 110, 0.22);
+  padding: 1px 6px;
+  font-size: 9px;
+  color: var(--parchment);
+  margin: 0 1px;
+}
+
+/* Compass */
+.compass-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.compass-ring {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.compass-ring::before {
+  content: 'N';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 7px;
+  color: var(--gold);
+}
+#compass-needle {
+  width: 2px;
+  height: 38px;
+  position: absolute;
+  transform-origin: 50% 100%;
+  bottom: 50%;
+  left: calc(50% - 1px);
+  background: linear-gradient(180deg, var(--ember) 0%, rgba(255,140,0,0.1) 100%);
+  transition: transform 0.25s ease;
+}
+.compass-info {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.9;
+}
+#dir-label { color: var(--gold); font-weight: 700; }
+#coord-x, #coord-z { color: var(--arcane-dim); }
+
+/* Zone approach warning */
+#zone-hint {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  padding: 8px 24px;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: rgba(8,6,3,0.85);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+#zone-hint.visible { opacity: 1; }

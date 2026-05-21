@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcane Forge — Portfolio World</title>
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/boot.css">
+<link rel="stylesheet" href="css/hud.css">
+<link rel="stylesheet" href="css/panels.css">
+</head>
+<body>
+
+<!-- ── Atmosphere layers ── -->
+<div class="vignette"></div>
+<div class="fog-lift"></div>
+
+<!-- ── Custom cursor ── -->
+<div id="cursor">
+  <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="13" cy="13" r="9"   stroke="#d4af37" stroke-width="1"/>
+    <circle cx="13" cy="13" r="2.2" fill="#d4af37"/>
+    <line x1="13" y1="0"  x2="13" y2="7"  stroke="#d4af37" stroke-width="1"/>
+    <line x1="13" y1="19" x2="13" y2="26" stroke="#d4af37" stroke-width="1"/>
+    <line x1="0"  y1="13" x2="7"  y2="13" stroke="#d4af37" stroke-width="1"/>
+    <line x1="19" y1="13" x2="26" y2="13" stroke="#d4af37" stroke-width="1"/>
+    <circle cx="13" cy="4"  r="1" fill="#d4af37" opacity="0.5"/>
+    <circle cx="13" cy="22" r="1" fill="#d4af37" opacity="0.5"/>
+    <circle cx="4"  cy="13" r="1" fill="#d4af37" opacity="0.5"/>
+    <circle cx="22" cy="13" r="1" fill="#d4af37" opacity="0.5"/>
+  </svg>
+</div>
+
+<!-- ── Particle canvas ── -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ── Three.js world canvas ── -->
+<canvas id="world-canvas"></canvas>
+
+<!-- ═══════════════════════════════
+     BOOT SCREEN
+═══════════════════════════════ -->
+<div id="boot">
+  <div class="rune-frame">
+    <div class="corner tl">ᚠ</div>
+    <div class="corner tr">ᚢ</div>
+    <div class="corner bl">ᚦ</div>
+    <div class="corner br">ᚨ</div>
+
+    <span class="boot-crest">⚔</span>
+    <div class="boot-title">Arcane Forge</div>
+    <div class="boot-sub">[ Portfolio World · v2.0 · Initializing ]</div>
+
+    <div class="boot-log" id="boot-log"></div>
+    <div class="rune-bar">
+      <div class="rune-bar-fill" id="rune-fill"></div>
+    </div>
+
+    <div class="enter-prompt" id="enter-prompt">
+      <span class="key-rune">ENTER</span>
+      Enter the Realm
+    </div>
+  </div>
+</div>
+
+<!-- Music -->
+<audio id="bg-music" src="music/alexander-nakarada-adventure.mp3" loop></audio>
+
+<!-- ═══════════════════════════════
+     HUD
+═══════════════════════════════ -->
+<div id="hud">
+  <div id="hud-top">
+    <div class="hud-realm">The Arcane Forge</div>
+    <div id="hud-sector">SECTOR: VILLAGE GATE · APPROACH</div>
+  </div>
+
+  <div class="hud-vline left"></div>
+  <div class="hud-vline right"></div>
+
+  <!-- Zone approach hint (appears near interactive zones) -->
+  <div id="zone-hint"></div>
+
+  <div id="hud-bottom">
+
+    <!-- Speed -->
+    <div class="hud-card">
+      <div class="hud-card-label">Carriage Speed</div>
+      <div id="speed-val">0</div>
+      <div class="speed-unit">Leagues / Hour</div>
+      <div class="arcane-bar">
+        <div id="arcane-fill"></div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="hud-card" style="flex:1; max-width:260px;">
+      <div class="hud-card-label">Navigation Runes</div>
+      <div class="controls-hint">
+        <span class="key">W</span><span class="key">A</span><span class="key">S</span><span class="key">D</span>
+        &nbsp;/&nbsp;
+        <span class="key">↑</span><span class="key">←</span><span class="key">↓</span><span class="key">→</span>
+        &nbsp;Move<br>
+        <span class="key">Shift</span> Boost &nbsp;·&nbsp;
+        <span class="key">Mouse</span> Orbit cam<br>
+        <span class="key">E</span> Enter zone &nbsp;·&nbsp;
+        <span class="key">Esc</span> Close scroll
+      </div>
+    </div>
+
+    <!-- Compass -->
+    <div class="hud-card">
+      <div class="hud-card-label">Compass</div>
+      <div class="compass-wrap">
+        <div class="compass-ring">
+          <div id="compass-needle"></div>
+        </div>
+        <div class="compass-info">
+          <div id="dir-label">N</div>
+          <div id="coord-x">X: 0.0</div>
+          <div id="coord-z">Z: 0.0</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hud-bottom -->
+</div><!-- /hud -->
+
+<!-- ═══════════════════════════════
+     PANEL BACKDROP + SCROLL PANEL
+═══════════════════════════════ -->
+<div id="panel-backdrop"></div>
+<div id="scroll-panel" class="scroll-panel"></div>
+
+<!-- ── JS Modules (ES module entry point) ── -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
